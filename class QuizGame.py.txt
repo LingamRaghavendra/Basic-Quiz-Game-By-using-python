@@ -1,0 +1,50 @@
+class QuizGame:
+    def __init__(self):
+        self.questions = [
+            {
+                "question": "What is the capital of India?",
+                "options": ["A. Berlin", "B. New Delhi", "C. Paris", "D. Rome"],
+                "answer": "B"
+            },
+            {
+                "question": "What is the third planet in our solar system?",
+                "options": ["A. Earth", "B. Jupiter", "C. Mars", "D. Saturn"],
+                "answer": "A"
+            },
+            {
+                "question": "what is the National Animal of India ?",
+                "options": ["A. Lion", "B. Tiger", "C. Deer", "D. Elephant"],
+                "answer": "B"
+            }
+        ]
+        self.score = 0
+
+    def ask_question(self, question_data):
+        print(question_data["question"])
+        for option in question_data["options"]:
+            print(option)
+        
+        user_answer = input("Enter your answer (A, B, C, or D): ").strip().upper()
+        while user_answer not in ['A', 'B', 'C', 'D']:
+            user_answer = input("Invalid input. Please enter A, B, C, or D: ").strip().upper()
+
+        if user_answer == question_data["answer"]:
+            print("Correct!\n")
+            self.score += 1
+        else:
+            print(f"Wrong! The correct answer was {question_data['answer']}.\n")
+
+    def start_quiz(self):
+        print("Welcome to the Quiz Game!\n")
+        for question_data in self.questions:
+            self.ask_question(question_data)
+        
+        print(f"Quiz Over! Your final score is {self.score} out of {len(self.questions)}.\n")
+
+    def customize_quiz(self, new_questions):
+        self.questions = new_questions
+
+
+if __name__ == "__main__":
+    quiz_game = QuizGame()
+    quiz_game.start_quiz()
